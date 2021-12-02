@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:zoba_flutter/responsive/sizeConfig.dart';
 
 class FilterPage extends StatefulWidget {
   const FilterPage({Key? key}) : super(key: key);
@@ -13,8 +12,11 @@ class FilterPage extends StatefulWidget {
 class _FilterPageState extends State<FilterPage> {
   SfRangeValues _values = const SfRangeValues(0, 1000);
   bool isChecked = false;
+  // ignore: prefer_typing_uninitialized_variables
   var selectIndex;
+  // ignore: prefer_typing_uninitialized_variables
   var brandIndex;
+  // ignore: prefer_typing_uninitialized_variables
   var selectColorIndex;
   List<Map<String, dynamic>> myOrder = [
     {"text": "XS"},
@@ -97,7 +99,8 @@ class _FilterPageState extends State<FilterPage> {
                       showTicks: false,
                       showLabels: false,
                       enableTooltip: true,
-                      tooltipShape: SfPaddleTooltipShape(),
+                      tooltipShape: const SfPaddleTooltipShape(),
+
                       //tooltipTextFormatterCallback: ,
                       minorTicksPerInterval: 1,
                       onChanged: (SfRangeValues values) {
@@ -111,7 +114,7 @@ class _FilterPageState extends State<FilterPage> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(left: 18, top: 15, right: 18),
+                padding: const EdgeInsets.only(left: 18, top: 15, right: 18),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -267,7 +270,7 @@ class _FilterPageState extends State<FilterPage> {
           height: 60,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(35), color: Colors.redAccent),
-          child: Text(
+          child: const Text(
             "Apply",
             textAlign: TextAlign.center,
             style: TextStyle(

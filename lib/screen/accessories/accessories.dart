@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:zoba_flutter/component/all_product.dart';
 import 'package:zoba_flutter/style/k_text_style.dart';
 
-class Featured extends StatefulWidget {
-  const Featured({Key? key}) : super(key: key);
+class Accessories extends StatefulWidget {
+  const Accessories({Key? key}) : super(key: key);
 
   @override
-  _FeaturedState createState() => _FeaturedState();
+  _AccessoriesState createState() => _AccessoriesState();
 }
 
-class _FeaturedState extends State<Featured> {
+class _AccessoriesState extends State<Accessories> {
   List<Map<String, dynamic>> featured = [
     {"text": "All"},
     {"text": "Womens"},
@@ -59,6 +59,14 @@ class _FeaturedState extends State<Featured> {
           IconButton(
             onPressed: null,
             icon: Icon(
+              Icons.filter_alt_sharp,
+            ),
+            iconSize: 25,
+            color: Colors.black,
+          ),
+          IconButton(
+            onPressed: null,
+            icon: Icon(
               Icons.shopping_bag,
             ),
             iconSize: 25,
@@ -75,35 +83,8 @@ class _FeaturedState extends State<Featured> {
             Padding(
               padding: const EdgeInsets.only(left: 20, top: 15),
               child: Text(
-                "Featured",
+                "Accessories",
                 style: KTextStyle.headline6,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 15, right: 18),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ...List.generate(
-                    featured.length,
-                    (index) => GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: Text(
-                          featured[index]['text'],
-                          style: TextStyle(
-                              color: selectedIndex == index
-                                  ? Colors.redAccent
-                                  : Colors.grey,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1.2,
-                              fontSize: 20),
-                        )),
-                  )
-                ],
               ),
             ),
             Padding(
@@ -116,7 +97,7 @@ class _FeaturedState extends State<Featured> {
                       product.length,
                       (index) {
                         return AllProduct(
-                          imagepath: "assets/shoe.jpeg",
+                          imagepath: "assets/bag.jpg",
                           price: product[index]['price'],
                           text: product[index]['text'],
                         );

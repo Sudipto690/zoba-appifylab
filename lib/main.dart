@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:zoba_flutter/screen/accessories/accessories.dart';
 import 'package:zoba_flutter/screen/featured/featured.dart';
+import 'package:zoba_flutter/screen/home_screen/homepage.dart';
+import 'package:zoba_flutter/screen/my_account/myaccount_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
 
           ),
-      home: const Featured(),
+      home: const Accessories(),
     );
   }
 }
