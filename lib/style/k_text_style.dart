@@ -24,7 +24,10 @@ class KTextStyle {
       fontSize: 15, fontWeight: FontWeight.w400, letterSpacing: 0.15);
 
   static TextStyle subtitle2 = GoogleFonts.poppins(
-      fontSize: 13, fontWeight: FontWeight.w500, letterSpacing: 0.1);
+      color: Colors.grey,
+      fontSize: 13,
+      fontWeight: FontWeight.w500,
+      letterSpacing: 0.1);
 
   static TextStyle bodyText1 = GoogleFonts.poppins(
       fontSize: 15, fontWeight: FontWeight.w400, letterSpacing: 0.5);

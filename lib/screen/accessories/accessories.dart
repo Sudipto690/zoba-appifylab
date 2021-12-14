@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:zoba_flutter/component/all_product.dart';
+import 'package:zoba_flutter/global_component/all_product.dart';
+import 'package:zoba_flutter/global_component/k_appbar.dart';
+import 'package:zoba_flutter/style/k_size.dart';
 import 'package:zoba_flutter/style/k_text_style.dart';
 
 class Accessories extends StatefulWidget {
@@ -47,33 +49,15 @@ class _AccessoriesState extends State<Accessories> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: const IconButton(
-          onPressed: null,
-          icon: Icon(Icons.arrow_back),
-          iconSize: 25,
-          color: Colors.black,
-        ),
-        actions: const [
-          IconButton(
-            onPressed: null,
-            icon: Icon(
-              Icons.filter_alt_sharp,
-            ),
-            iconSize: 25,
-            color: Colors.black,
-          ),
-          IconButton(
-            onPressed: null,
-            icon: Icon(
-              Icons.shopping_bag,
-            ),
-            iconSize: 25,
-            color: Colors.black,
-          ),
-        ],
-        elevation: 0,
+      appBar: KAppBar(
+        leadingicon: Icons.arrow_back,
+        leadiconpress: () {
+          Navigator.pop(context);
+        },
+        sufixicon: Icons.filter_alt_rounded,
+        sufixiconpress: null,
+        prefixicon: Icons.shopping_bag_sharp,
+        prefixiconpress: null,
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -84,11 +68,12 @@ class _AccessoriesState extends State<Accessories> {
               padding: const EdgeInsets.only(left: 20, top: 15),
               child: Text(
                 "Accessories",
-                style: KTextStyle.headline6,
+                style:
+                    KTextStyle.headline6.copyWith(fontWeight: FontWeight.w800),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: EdgeInsets.all(KSize.getWidth(context, 25)),
               child: Wrap(
                   spacing: MediaQuery.of(context).size.width * 0.05,
                   key: _contentKey,
@@ -97,7 +82,7 @@ class _AccessoriesState extends State<Accessories> {
                       product.length,
                       (index) {
                         return AllProduct(
-                          imagepath: "assets/bag.jpg",
+                          imagepaths: "assets/bag.jpg",
                           price: product[index]['price'],
                           text: product[index]['text'],
                         );

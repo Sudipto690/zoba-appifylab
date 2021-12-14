@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-
 import 'package:zoba_flutter/global_component/all_product.dart';
 import 'package:zoba_flutter/global_component/k_appbar.dart';
+import 'package:zoba_flutter/screen/filterpage/filterpage.dart';
 import 'package:zoba_flutter/style/k_size.dart';
 import 'package:zoba_flutter/style/k_text_style.dart';
 
-class Featured extends StatefulWidget {
-  const Featured({Key? key}) : super(key: key);
+class NewCollection extends StatefulWidget {
+  const NewCollection({Key? key}) : super(key: key);
 
   @override
-  _FeaturedState createState() => _FeaturedState();
+  _NewCollectionState createState() => _NewCollectionState();
 }
 
-class _FeaturedState extends State<Featured> {
-  List<Map<String, dynamic>> featured = [
-    {"text": "All"},
-    {"text": "Womens"},
-    {"text": "Men's"},
-    {"text": "Kids"},
-  ];
+class _NewCollectionState extends State<NewCollection> {
   List<Map<String, dynamic>> product = [
     {
       "text": "Nikelab Vandal Black",
@@ -41,10 +35,7 @@ class _FeaturedState extends State<Featured> {
       "price": "\$${11}"
     },
   ];
-  // ignore: prefer_typing_uninitialized_variables
-  var selectedIndex;
   final GlobalKey _contentKey = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +44,13 @@ class _FeaturedState extends State<Featured> {
         leadingicon: Icons.arrow_back,
         leadiconpress: () {
           Navigator.pop(context);
+        },
+        sufixicon: Icons.filter_alt_rounded,
+        sufixiconpress: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const FilterPage()));
         },
         prefixicon: Icons.shopping_bag_sharp,
         prefixiconpress: null,
@@ -63,44 +61,11 @@ class _FeaturedState extends State<Featured> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                left: KSize.getWidth(context, 20),
-                top: KSize.getWidth(context, 13),
-                bottom: KSize.getWidth(context, 18),
-              ),
+              padding: const EdgeInsets.only(left: 20, top: 15),
               child: Text(
-                "Featured",
+                "New collection",
                 style:
-                    KTextStyle.headline6.copyWith(fontWeight: FontWeight.w700),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: KSize.getWidth(context, 15),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  ...List.generate(
-                    featured.length,
-                    (index) => GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: Text(
-                          featured[index]['text'],
-                          style: TextStyle(
-                              color: selectedIndex == index
-                                  ? Colors.redAccent
-                                  : Colors.grey,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 1.2,
-                              fontSize: 20),
-                        )),
-                  )
-                ],
+                    KTextStyle.headline6.copyWith(fontWeight: FontWeight.w800),
               ),
             ),
             Padding(
@@ -113,7 +78,7 @@ class _FeaturedState extends State<Featured> {
                       product.length,
                       (index) {
                         return AllProduct(
-                          imagepaths: "assets/shoe.jpg",
+                          imagepaths: "assets/bag.jpg",
                           price: product[index]['price'],
                           text: product[index]['text'],
                         );

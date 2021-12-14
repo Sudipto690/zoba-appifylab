@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:zoba_flutter/global_component/kbutton.dart';
+import 'package:zoba_flutter/style/k_size.dart';
 
 class FilterPage extends StatefulWidget {
   const FilterPage({Key? key}) : super(key: key);
@@ -23,7 +25,6 @@ class _FilterPageState extends State<FilterPage> {
     {"text": "M"},
     {"text": "L"},
     {"text": "XL"},
-    {"text": "X"},
   ];
   List<Map<String, dynamic>> brand = [
     {"text": "Zara"},
@@ -43,18 +44,26 @@ class _FilterPageState extends State<FilterPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: const IconButton(
-          onPressed: null,
-          icon: Icon(Icons.arrow_back),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.grey[800],
+          ),
           iconSize: 25,
-          color: Colors.black,
         ),
-        actions: const [
+        actions: [
           IconButton(
-            onPressed: null,
-            icon: FaIcon(FontAwesomeIcons.times),
+            onPressed: () {
+              null;
+            },
+            icon: FaIcon(
+              FontAwesomeIcons.times,
+              color: Colors.grey[800],
+            ),
             iconSize: 20,
-            color: Colors.black,
           ),
         ],
         elevation: 0,
@@ -62,13 +71,13 @@ class _FilterPageState extends State<FilterPage> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
-          padding: const EdgeInsets.all(12),
+          padding: EdgeInsets.all(KSize.getWidth(context, 11)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 18),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(left: KSize.getWidth(context, 17)),
+                child: const Text(
                   "Filter",
                   style: TextStyle(
                     fontSize: 30,
@@ -79,9 +88,11 @@ class _FilterPageState extends State<FilterPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 18.0, top: 18),
-                    child: Text(
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: KSize.getWidth(context, 18),
+                        top: KSize.getWidth(context, 18)),
+                    child: const Text(
                       "PRICE RANGE",
                       style: TextStyle(
                           color: Colors.grey,
@@ -90,7 +101,7 @@ class _FilterPageState extends State<FilterPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: EdgeInsets.all(KSize.getWidth(context, 4)),
                     child: SfRangeSlider(
                       min: 0,
                       max: 1000,
@@ -114,7 +125,10 @@ class _FilterPageState extends State<FilterPage> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 18, top: 15, right: 18),
+                padding: EdgeInsets.only(
+                    left: KSize.getWidth(context, 18),
+                    top: KSize.getWidth(context, 15),
+                    right: KSize.getWidth(context, 18)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -144,14 +158,16 @@ class _FilterPageState extends State<FilterPage> {
                                   });
                                 },
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 18.0, top: 12),
+                                  padding: EdgeInsets.only(
+                                      left: KSize.getWidth(context, 18),
+                                      top: KSize.getWidth(context, 12)),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.all(5.0),
+                                        padding: EdgeInsets.all(
+                                            KSize.getWidth(context, 5)),
                                         child: Text(
                                           brand[index]['text'],
                                           style: TextStyle(
@@ -162,10 +178,11 @@ class _FilterPageState extends State<FilterPage> {
                                         ),
                                       ),
                                       selectIndex == index
-                                          ? const Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 25),
-                                              child: Icon(
+                                          ? Padding(
+                                              padding: EdgeInsets.only(
+                                                  right: KSize.getWidth(
+                                                      context, 25)),
+                                              child: const Icon(
                                                 Icons.check,
                                                 color: Colors.redAccent,
                                               ))
@@ -174,9 +191,11 @@ class _FilterPageState extends State<FilterPage> {
                                   ),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 18, right: 18),
-                                child: Divider(
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: KSize.getWidth(context, 18),
+                                    right: KSize.getWidth(context, 18)),
+                                child: const Divider(
                                   color: Colors.grey,
                                   thickness: 0.6,
                                   height: 3,
@@ -263,19 +282,20 @@ class _FilterPageState extends State<FilterPage> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(25.0),
-        child: Container(
-          alignment: Alignment.center,
-          width: 70,
-          height: 60,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(35), color: Colors.redAccent),
-          child: const Text(
-            "Apply",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
-          ),
+        padding: EdgeInsets.only(
+          left: KSize.getHeight(context, 15),
+          right: KSize.getHeight(context, 15),
+          top: KSize.getHeight(context, 5),
+          bottom: KSize.getHeight(context, 5),
+        ),
+        child: Kbutton(
+          getWidth: KSize.getWidth(context, 180),
+          getHeight: KSize.getHeight(context, 55),
+          cdColor: Colors.redAccent,
+          dbColor: Colors.redAccent,
+          kbuttonTap: () {},
+          tcolor: Colors.white,
+          text: "Apply",
         ),
       ),
     );

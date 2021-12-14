@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:zoba_flutter/screen/accessories/accessories.dart';
-import 'package:zoba_flutter/screen/featured/featured.dart';
-import 'package:zoba_flutter/screen/home_screen/homepage.dart';
-import 'package:zoba_flutter/screen/my_account/myaccount_page.dart';
+import 'package:redux/redux.dart';
+import 'package:zoba_flutter/redux/reducer.dart';
+import 'package:zoba_flutter/redux/state.dart';
+import 'package:zoba_flutter/screen/intro_screen.dart';
+import 'package:zoba_flutter/style/k_color.dart';
+import 'package:zoba_flutter/style/k_text_style.dart';
+
+final store = Store<AppState>(reducer,
+    initialState: AppState(
+      isLoadingState: true,
+      drawerItemState: null,
+    ));
 
 void main() {
   runApp(const MyApp());
@@ -15,21 +23,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
+        debugShowCheckedModeBanner: false,
+        home: FutureBuilder(
+            future: Future.delayed(const Duration(seconds: 2)),
+            builder: (BuildContext c, AsyncSnapshot<dynamic> s) =>
+                s.connectionState != ConnectionState.done
+                    ? Scaffold(
+                        backgroundColor: kColor.primary,
+                        body: Center(
+                          child: Text(
+                            "Zoba .",
+                            style: KTextStyle.headline3,
 
-          ),
-      home: const Accessories(),
-    );
+                            // TextStyle(fontSize: 40,color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      )
+                    : const IntroductionScreens()));
   }
 }
